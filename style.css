@@ -1,46 +1,148 @@
+/* 页面背景及字体 */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #F5F5F5;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
+    color: #333;
 }
 
+/* 容器样式 */
 .container {
-    text-align: center;
-    padding: 20px;
     background-color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 标题样式 */
+h1 {
+    font-size: 22px;
+    color: #3b3b3b;
+    margin-bottom: 30px;
+}
+
+/* 输入框样式 */
+.input-group {
+    margin-bottom: 30px;
+    text-align: left;
+    padding: 15px;
+    background-color: #f9f9f9;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
-input {
-    width: 80%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+.input-group label {
     font-size: 16px;
+    color: #555;
+    margin-bottom: 8px;
+    display: block;
 }
 
-button {
-    background-color: #007AFF;
-    color: white;
-    padding: 10px 20px;
+.input-group input[type="range"] {
+    width: 100%;
+    margin-top: 10px;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 10px;
+    background-color: #ddd;
     border-radius: 5px;
-    font-size: 18px;
+}
+
+.input-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #4b9bff;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #005BB5;
+/* 数字显示部分 */
+span {
+    font-size: 18px;
+    color: #333;
+    margin-left: 10px;
 }
 
-#result {
+/* 提示文字 */
+.slider-hint {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 8px;
+}
+
+/* 按钮样式 */
+button {
+    background-color: #4b9bff;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 18px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #3380cc;
+}
+
+/* 结果框样式 */
+.result-section {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+#result, #level {
+    margin-top: 10px;
     font-size: 20px;
-    margin-top: 20px;
-    color: #333;
+    font-weight: bold;
+    color: #4b9bff;
+}
+
+/* 高亮显示安全等级 */
+.level {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffd700; /* 黄金色 */
+    text-transform: uppercase;
+    margin-top: 15px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.level.highlight {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+/* 分区样式 */
+.button-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #ddd;
 }
