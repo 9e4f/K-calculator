@@ -3,18 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>计算器</title>
+    <title>K值计算器</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>请输入E3, E4, E5的值</h1>
-        <input id="E3" type="number" placeholder="E3">
-        <input id="E4" type="number" placeholder="E4">
-        <input id="E5" type="number" placeholder="E5">
-        <button onclick="calculateK()">计算K</button>
-        <p id="result">K = </p>
+        <h1>K值计算器</h1>
+        
+        <!-- 输入赋值部分 -->
+        <div class="input-group">
+            <label for="impact">社会影响力赋值: <span id="impactValue">1</span></label>
+            <input id="impact" type="range" min="1" max="5" value="1" step="1" oninput="updateValue(this)" onchange="calculateK()">
+            <div class="slider-hint">滑动选择赋值</div>
+        </div>
+
+        <div class="input-group">
+            <label for="scale">规模和服务范围赋值: <span id="scaleValue">1</span></label>
+            <input id="scale" type="range" min="1" max="5" value="1" step="1" oninput="updateValue(this)" onchange="calculateK()">
+            <div class="slider-hint">滑动选择赋值</div>
+        </div>
+
+        <div class="input-group">
+            <label for="importance">所提供服务的重要性赋值: <span id="importanceValue">1</span></label>
+            <input id="importance" type="range" min="1" max="5" value="1" step="1" oninput="updateValue(this)" onchange="calculateK()">
+            <div class="slider-hint">滑动选择赋值</div>
+        </div>
+
+        <!-- 计算按钮部分 -->
+        <div class="button-section">
+            <button onclick="calculateK()">计算安全等级值K</button>
+        </div>
+
+        <!-- 结果部分 -->
+        <div class="result-section">
+            <p id="result">安全等级值K: </p>
+            <p id="level" class="level">安全等级: </p>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
 </html>
+
