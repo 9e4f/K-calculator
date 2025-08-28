@@ -1,28 +1,58 @@
-// 验证输入是否在1到5之间
-function validateInput(inputElement) {
-    let value = parseInt(inputElement.value, 10);
+// 更新滑动条值显示
+function updateValue(slider) {
+    const value = slider.value;
+    const id = slider.id;
 
-    // 检查输入的值是否在 1 和 5 之间
-    if (value < 1 || value > 5 || isNaN(value)) {
-        // 如果输入值无效，设置为 1
-        inputElement.value = 1;
-        alert("请输入1到5之间的数字！");
+    // 显示对应的数值
+    if (id === 'impact') {
+        document.getElementById('impactValue').textContent = value;
+    } else if (id === 'scale') {
+        document.getElementById('scaleValue').textContent = value;
+    } else if (id === 'importance') {
+        document.getElementById('importanceValue').textContent = value;
     }
+
+    // 在改变滑动条值时立即更新影响力指数
+    calculateK();
 }
 
 function calculateK() {
-    const E3 = parseFloat(document.getElementById('E3').value);
-    const E4 = parseFloat(document.getElementById('E4').value);
-    const E5 = parseFloat(document.getElementById('E5').value);
+    const impact = parseFloat(document.getElementById('impact').value);
+    const scale = parseFloat(document.getElementById('scale').value);
+    const importance = parseFloat(document.getElementById('importance').value);
 
-    if (isNaN(E3) || isNaN(E4) || isNaN(E5)) {
+    if (isNaN(impact) || isNaN(scale) || isNaN(importance)) {
         alert('请输入有效的数字');
         return;
     }
 
     // 公式计算部分
-    const K = Math.round(Math.log2((Math.pow(2, E3) * 1/3) + (Math.pow(2, E4) * 1/3) + (Math.pow(2, E5) * 1/3)), 1);
+    const K = Math.round(Math.log2((Math.pow(2, impact) * 1/3) + (Math.pow(2, scale) * 1/3) + (Math.pow(2, importance) * 1/3)) * 10) / 10;
 
-    document.getElementById('result').textContent = 'K = ' + K;
+    // 显示计算结果
+    document.getElementById('result').textContent = '安全等级值K: ' + K;
+
+    // 根据K值返回对应的安全等级
+    let level = '';
+    if (K >= 1 && K < 1.5) {
+        level = '第1级';
+    } else if (K >= 1.5 && K < 2.5) {
+        level = '第2级';
+    } else if (K >= 2.5 && K <= 4) {
+        level = '第3级';
+    } else if (K > 4 && K < 4.5) {
+        level = '第4级';
+    } else if (K >= 4.5 && K <= 5) {
+        level = '第5级';
+    } else {
+        level = '无效等级';
+    }
+
+    // 显示安全等级并突出显示
+    const levelElement = document.getElementById('level');
+    levelElement.textContent = '安全等级: ' + level;
+    levelElement.classList.add('highlight');
 }
+
+
 
